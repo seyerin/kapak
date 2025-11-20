@@ -1,9 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;600;700;800&display=swap');
 
-.font-spartan {
-  font-family: 'League Spartan', sans-serif;
-}
+/* Anda bisa menambahkan custom CSS lain di sini jika diperlukan */

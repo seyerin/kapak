@@ -38,8 +38,8 @@ export const AIAssistant = () => {
       </button>
 
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 bg-gray-900 bg-opacity-75 flex items-center justify-center font-spartan">
-          <div className="bg-white rounded-xl w-full max-w-md mx-4 shadow-2xl flex flex-col h-[85vh]">
+        <div className="fixed inset-0 z-50 bg-slate-900/70 flex items-center justify-center font-spartan">
+          <div className="bg-white rounded-xl w-full max-w-lg mx-4 shadow-2xl flex flex-col h-[85vh] border border-slate-300">
             <header className="p-4 bg-indigo-600 text-white rounded-t-xl flex justify-between items-center">
               <h2 className="text-xl font-bold flex items-center">
                 <LucideBot className="w-6 h-6 mr-2" />
@@ -50,7 +50,7 @@ export const AIAssistant = () => {
               </button>
             </header>
 
-            <div className="flex-grow p-4 space-y-4 overflow-y-auto bg-gray-50">
+            <div className="flex-grow p-4 space-y-4 overflow-y-auto bg-slate-50">
               {/* Pesan Selamat Datang */}
               <div className="flex justify-start">
                 <div className="bg-indigo-100 p-3 rounded-xl max-w-[85%] shadow-sm text-sm text-indigo-900">
@@ -62,7 +62,7 @@ export const AIAssistant = () => {
               {/* Respon AI */}
               {response && (
                 <div className="flex justify-start">
-                  <div className="bg-white p-3 rounded-xl max-w-[85%] shadow-md border border-gray-200 text-sm whitespace-pre-wrap">
+                  <div className="bg-white p-3 rounded-xl max-w-[85%] shadow-md border border-slate-200 text-sm whitespace-pre-wrap">
                     <p className="font-bold text-indigo-700 mb-1 flex items-center"><LucideBot className="w-4 h-4 mr-1"/> AI Response:</p>
                     {response}
                   </div>
@@ -72,7 +72,7 @@ export const AIAssistant = () => {
               {/* Loading Indicator */}
               {isLoading && (
                 <div className="flex justify-start">
-                  <div className="bg-gray-200 p-3 rounded-xl max-w-[85%] shadow-sm text-sm text-gray-700 flex items-center animate-pulse">
+                  <div className="bg-slate-200 p-3 rounded-xl max-w-[85%] shadow-sm text-sm text-slate-700 flex items-center animate-pulse">
                     <LucideLoader className="w-4 h-4 mr-2 animate-spin" />
                     Memproses permintaan...
                   </div>
@@ -82,7 +82,7 @@ export const AIAssistant = () => {
               {/* Tips */}
               {!isLoading && !response && (
                 <div className="flex justify-start">
-                    <div className="bg-yellow-50 p-3 rounded-xl max-w-[85%] shadow-sm text-xs text-yellow-800 flex items-center">
+                    <div className="bg-yellow-100/60 p-3 rounded-xl max-w-[85%] shadow-sm text-xs text-yellow-800 flex items-center">
                         <LucideInfo className="w-4 h-4 mr-2 flex-shrink-0" />
                         Coba tanyakan: "Apa perbedaan antara PPh 4(2) dan PPh 23?"
                     </div>
@@ -92,14 +92,14 @@ export const AIAssistant = () => {
             </div>
 
             {/* Input Form */}
-            <form onSubmit={handleSubmit} className="p-4 border-t border-gray-200 bg-white rounded-b-xl">
+            <form onSubmit={handleSubmit} className="p-4 border-t border-slate-200 bg-white rounded-b-xl">
               <div className="flex space-x-2">
                 <input
                   type="text"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Tanyakan tentang PPh 21, 4(2), atau 23..."
-                  className="flex-grow rounded-lg border-gray-300 p-3 text-sm focus:border-indigo-500 focus:ring-indigo-500"
+                  className="flex-grow rounded-lg border-slate-300 p-3 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition duration-150"
                   disabled={isLoading}
                 />
                 <button

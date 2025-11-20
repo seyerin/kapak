@@ -26,19 +26,16 @@ export const InputField = ({ label, value, onChange, icon: Icon }) => {
 
   return (
     <div className="flex flex-col space-y-1 font-spartan">
-      <label htmlFor={label.replace(/\s/g, '-')} className="text-sm font-medium text-gray-700">{label}</label>
-      <div className="relative rounded-lg shadow-sm">
+      <label htmlFor={label.replace(/\s/g, '-')} className="text-sm font-medium text-slate-700">{label}</label>
+      <div className="relative">
         <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-          <Icon className="h-5 w-5 text-indigo-500" aria-hidden="true" />
+          <Icon className="h-5 w-5 text-slate-400" aria-hidden="true" />
         </div>
         <input
           id={label.replace(/\s/g, '-')} type="text" value={displayValue} onChange={handleChange} onBlur={handleBlur}
-          className="block w-full rounded-lg border-gray-300 pl-10 pr-4 py-2 text-lg text-right font-mono tracking-wider focus:border-indigo-600 focus:ring-indigo-600 transition duration-150 ease-in-out"
+          className="block w-full rounded-lg border-slate-300 bg-white pl-10 pr-4 py-2 text-lg text-right font-mono tracking-wider shadow-sm transition duration-150 ease-in-out focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
           placeholder="0"
         />
-        <div className="absolute inset-y-0 right-0 flex items-center pr-3">
-          <span className="text-gray-500 text-sm font-medium">IDR</span>
-        </div>
       </div>
     </div>
   );

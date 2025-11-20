@@ -37,9 +37,9 @@ export default function App() {
       onClick={() => setActiveTab(tab)}
       className={`
         px-4 py-3 text-sm font-semibold flex items-center justify-center transition-all duration-300 rounded-t-lg
-        ${activeTab === tab 
-          ? 'bg-white text-indigo-700 border-b-4 border-indigo-600 shadow-t-lg'
-          : 'bg-gray-50 text-gray-600 hover:bg-gray-200 border-b-4 border-transparent hover:border-indigo-200'
+        ${activeTab === tab
+          ? 'bg-white text-indigo-600 border-b-2 border-indigo-500'
+          : 'text-slate-500 hover:bg-slate-100 hover:text-slate-700 border-b-2 border-transparent'
         } font-spartan
       `}
     >
@@ -58,18 +58,18 @@ export default function App() {
         </div>
       )}
       
-      <div className="min-h-screen bg-gray-100 p-4 sm:p-8 flex items-start justify-center font-spartan transition-opacity duration-500" style={{ opacity: isAppReady ? 1 : 0 }}>
-        <div className="w-full max-w-5xl bg-white rounded-2xl shadow-2xl">
+      <div className="min-h-screen bg-slate-50 p-4 sm:p-8 flex items-start justify-center font-spartan transition-opacity duration-500" style={{ opacity: isAppReady ? 1 : 0 }}>
+        <div className="w-full max-w-5xl bg-white rounded-2xl shadow-subtle border border-slate-200/80">
           <header className="px-6 pt-6">
-            <h1 className="text-2xl font-extrabold text-indigo-800 flex items-center">
+            <h1 className="text-2xl font-extrabold text-slate-800 flex items-center">
               <LucideScale className="w-7 h-7 mr-3 text-indigo-600" />
               Kalkulator Pajak Penghasilan (PPh)
             </h1>
-            <p className="text-sm text-gray-500 mt-1">Simulasi perhitungan PPh Pasal 21, 4(2), dan 23.</p>
+            <p className="text-sm text-slate-500 mt-1">Simulasi perhitungan PPh Pasal 21, 4(2), dan 23.</p>
           </header>
 
           {/* Menu Navigasi (Tabs) */}
-          <div className="flex border-b border-gray-200 mt-4 px-6 bg-gray-50 rounded-t-lg">
+          <div className="border-b border-slate-200 mt-4 px-6">
             <TabButton tab="PPh21" label="PPh Pasal 21 (Gaji)" icon={LucideFileText} />
             <TabButton tab="PPh4(2)" label="PPh Pasal 4(2) (Final)" icon={LucideBuilding} />
             <TabButton tab="PPh23" label="PPh Pasal 23 (Jasa)" icon={LucideBriefcase} />
