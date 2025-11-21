@@ -1,15 +1,27 @@
-import React from 'react';
-import { LucideScale } from 'lucide-react';
+import { LucideAxe } from 'lucide-react';
 
-export const SplashScreen = ({ onAnimationEnd }) => (
-  <div 
-    className="fixed inset-0 bg-indigo-600 flex flex-col items-center justify-center z-[100] font-spartan transition-opacity duration-700 ease-in-out"
-    onTransitionEnd={onAnimationEnd}
-  >
-    <div className="text-white text-center animate-pulse">
-      <LucideScale className="w-24 h-24 mx-auto mb-4" />
-      <h1 className="text-4xl font-extrabold">Kalkulator Pajak</h1>
-      <p className="text-lg mt-2 text-indigo-200">Memuat aplikasi...</p>
+export function SplashScreen({ onAnimationEnd, style }) {
+  const name = "KAPAK";
+
+  return (
+    <div
+      onTransitionEnd={onAnimationEnd}
+      style={style}
+      className="fixed inset-0 flex flex-col items-center justify-center bg-slate-800 transition-opacity duration-500 ease-in-out"
+    >
+      <div className="flex flex-col items-center justify-center">
+        <LucideAxe size={64} className="text-white mb-4 origin-bottom-right animate-swing" />
+        <div className="flex text-5xl sm:text-6xl font-bold font-mono tracking-widest text-white">
+          {name.split('').map((char, index) => (
+            <span key={index} className="animate-bounce-in opacity-0" style={{ animationDelay: `${index * 100}ms` }}>
+              {char}
+            </span>
+          ))}
+        </div>
+        <p className="text-slate-400 mt-4 animate-bounce-in opacity-0" style={{ animationDelay: '600ms' }}>
+          Kalkulator Pajak Ngakak
+        </p>
+      </div>
     </div>
-  </div>
-);
+  );
+}

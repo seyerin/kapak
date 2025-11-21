@@ -1,86 +1,58 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import { 
-  LucideScale, LucideBuilding, 
-  LucideBriefcase, LucideFileText
-} from 'lucide-react';
-import { SplashScreen } from '@/components/SplashScreen';
-import { AIAssistant } from '@/features/ai-assistant/AIAssistant';
-import { Pph21Content, Pph42Content, Pph23Content } from '@/features/pph-calculator/components';
-// =======================================================================
-// 5. MAIN APP COMPONENT
-// =======================================================================
+import { useState, useMemo, useEffect } from 'react';
+import { CalculationMode as TaxTypeSelector } from '@/components/CalculationMode';
+import { SplashScreen } from '@/components/SplashScreen.jsx';
+import { Pph21CalculatorUI } from '@/features/pph-calculator/components/Pph21CalculatorUI.jsx';
+import { Pph42CalculatorUI } from '@/features/pph-calculator/components/Pph42CalculatorUI.jsx';
+import { Pph23CalculatorUI } from '@/features/pph-calculator/components/Pph23CalculatorUI.jsx';
+
+// Daftar semua kalkulator yang tersedia
+const calculationModes = [
+  { id: 'pph', label: 'PPh 21' },
+  { id: 'pph42', label: 'PPh 4(2)' },
+  { id: 'pph23', label: 'PPh 23' },
+  { id: 'impor', label: 'Pajak Impor' },
+  // Tambahkan kalkulator lain di sini
+];
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('PPh21');
-  const [isAppReady, setIsAppReady] = useState(false);
-  const [isSplashVisible, setIsSplashVisible] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [showApp, setShowApp] = useState(false);
+
+  // State untuk PPh 21
+  const [mode, setMode] = useState('pph');
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsAppReady(true), 1500);
+    const timer = setTimeout(() => setLoading(false), 1500);
     return () => clearTimeout(timer);
   }, []);
 
-  const renderContent = () => {
-    switch (activeTab) {
-      case 'PPh4(2)':
-        return <Pph42Content />;
-      case 'PPh23':
-        return <Pph23Content />;
-      case 'PPh21':
-      default:
-        return <Pph21Content />;
-    }
+  const handleAnimationEnd = () => {
+    setShowApp(true);
   };
 
-  const TabButton = ({ tab, label, icon: Icon }) => (
-    <button
-      onClick={() => setActiveTab(tab)}
-      className={`
-        px-4 py-3 text-sm font-semibold flex items-center justify-center transition-all duration-300 rounded-t-lg
-        ${activeTab === tab
-          ? 'bg-white text-indigo-600 border-b-2 border-indigo-500'
-          : 'text-slate-500 hover:bg-slate-100 hover:text-slate-700 border-b-2 border-transparent'
-        } font-spartan
-      `}
-    >
-      <Icon className="w-5 h-5 mr-2" />
-      {label}
-    </button>
-  );
+  if (!showApp) {
+    return <SplashScreen onAnimationEnd={handleAnimationEnd} style={{ opacity: loading ? 1 : 0 }} />;
+  }
 
   return (
-    <>
-      {/* Style sekarang dimuat dari global.css melalui main.jsx */}
-      
-      {isSplashVisible && (
-        <div style={{ opacity: isAppReady ? 0 : 1 }}>
-          <SplashScreen onAnimationEnd={() => setIsSplashVisible(false)} />
-        </div>
-      )}
-      
-      <div className="min-h-screen bg-slate-50 p-4 sm:p-8 flex items-start justify-center font-spartan transition-opacity duration-500" style={{ opacity: isAppReady ? 1 : 0 }}>
-        <div className="w-full max-w-5xl bg-white rounded-2xl shadow-subtle border border-slate-200/80">
-          <header className="px-6 pt-6">
-            <h1 className="text-2xl font-extrabold text-slate-800 flex items-center">
-              <LucideScale className="w-7 h-7 mr-3 text-indigo-600" />
-              Kalkulator Pajak Penghasilan (PPh)
-            </h1>
-            <p className="text-sm text-slate-500 mt-1">Simulasi perhitungan PPh Pasal 21, 4(2), dan 23.</p>
-          </header>
+    <main className="p-4 sm:p-8 font-sans bg-[#e0e5ec] min-h-screen">
+      <header className="text-center mb-8">
+        <h1 className="text-3xl sm:text-4xl font-bold text-slate-800 tracking-wider">KAPAK</h1>
+        <p className="text-sm text-slate-500 mt-1">Kalkulator Pajak Ngakak</p>
+      </header>
 
-          {/* Menu Navigasi (Tabs) */}
-          <div className="border-b border-slate-200 mt-4 px-6">
-            <TabButton tab="PPh21" label="PPh Pasal 21 (Gaji)" icon={LucideFileText} />
-            <TabButton tab="PPh4(2)" label="PPh Pasal 4(2) (Final)" icon={LucideBuilding} />
-            <TabButton tab="PPh23" label="PPh Pasal 23 (Jasa)" icon={LucideBriefcase} />
-          </div>
-
-          <div className="p-6 sm:p-8">
-            {renderContent()}
-          </div>
-        </div>
+      {/* Navigasi Utama, terpisah dari panel */}
+      <div className="mb-6 flex justify-center">
+        <TaxTypeSelector modes={calculationModes} currentMode={mode} onModeChange={setMode} />
       </div>
-      <AIAssistant />
-    </>
-  );
+
+      <div className="max-w-5xl mx-auto p-6 sm:p-8 rounded-3xl shadow-neumorphic-out">
+        {/* Router untuk menampilkan kalkulator yang sesuai */}
+        {mode === 'pph' && <Pph21CalculatorUI />}
+        {mode === 'pph42' && <Pph42CalculatorUI />}
+        {mode === 'pph23' && <Pph23CalculatorUI />}
+        {mode === 'impor' && <div className="text-center text-slate-500">Kalkulator Pajak Impor akan segera hadir!</div>}
+      </div>
+    </main>
+  )
 }
