@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'sans': ['"Plus Jakarta Sans"', 'sans-serif'],
-        'mono': ['"League Spartan"', 'monospace'],
+        'sans': ['"Manrope"', 'sans-serif'],
+        'mono': ['"Manrope"', 'monospace'], // Menggunakan Manrope juga untuk mono agar konsisten
       },
       colors: {
         slate: {
@@ -31,7 +31,7 @@ export default {
       keyframes: {
         'bounce-in': {
           '0%': { transform: 'scale(0.5)', opacity: '0' },
-          '60%': { transform: 'scale(1.1)', opacity: '1' },
+          '50%': { transform: 'scale(1.1)', opacity: '1' },
           '80%': { transform: 'scale(0.9)' },
           '100%': { transform: 'scale(1)' },
         },

@@ -35,10 +35,10 @@ export default function App() {
   }
 
   return (
-    <main className="p-4 sm:p-8 font-sans bg-[#e0e5ec] min-h-screen">
+    <main className="p-4 sm:p-8 font-sans bg-gradient-to-br from-navy-50 to-navy-100 min-h-screen">
       <header className="text-center mb-8">
-        <h1 className="text-3xl sm:text-4xl font-bold text-slate-800 tracking-wider">KAPAK</h1>
-        <p className="text-sm text-slate-500 mt-1">Kalkulator Pajak Ngakak</p>
+        <h1 className="text-3xl sm:text-4xl font-bold text-navy-900 tracking-wider">KAPAK</h1>
+        <p className="text-sm text-navy-600 mt-1">Kalkulator Pajak</p>
       </header>
 
       {/* Navigasi Utama, terpisah dari panel */}
@@ -46,7 +46,7 @@ export default function App() {
         <TaxTypeSelector modes={calculationModes} currentMode={mode} onModeChange={setMode} />
       </div>
 
-      <div className="max-w-5xl mx-auto p-6 sm:p-8 rounded-3xl shadow-neumorphic-out">
+      <div className="max-w-5xl mx-auto p-6 sm:p-8 rounded-3xl bg-navy-50/50 shadow-neumorphic-out">
         {/* Router untuk menampilkan kalkulator yang sesuai */}
         {mode === 'pph' && <Pph21CalculatorUI />}
         {mode === 'pph42' && <Pph42CalculatorUI />}
