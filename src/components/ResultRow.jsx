@@ -1,14 +1,19 @@
 import React from 'react';
 
 export const ResultRow = ({ label, value, isTax = false, isTotal = false, isTaxable = false }) => (
-  <div className={`flex justify-between items-center py-2.5 px-3 rounded-md transition duration-150 ease-in-out 
-    ${isTotal ? 'bg-navy-900/50 -mx-3 px-6 py-4' : ''}
+  <div className={`flex justify-between items-center py-2 px-1 transition duration-150 ease-in-out 
+    ${isTotal ? 'border-t border-navy-700 mt-4 pt-4' : ''}
   `}>
-    <span className={`text-sm ${isTotal ? 'font-semibold text-navy-200' : 'text-navy-300'}`}>{label}</span>
-    <span className={`text-right  
-      ${isTotal ? 'text-3xl font-bold text-white' : 'text-base font-semibold'} 
-      ${isTax ? 'text-red-400' : 'text-navy-100'}
-      ${isTaxable ? 'text-sky-400' : ''}
+    <span className={`text-sm ${isTotal ? 'font-bold text-navy-100' : 'text-navy-300'}`}>{label}</span>
+    <span className={`text-right font-sans
+      ${isTotal ? 'text-5xl font-bold' : 'text-base font-semibold'}
+      ${isTax 
+        ? 'text-rose-400' 
+        : isTaxable 
+          ? 'text-amber-400' 
+          : isTotal 
+            ? 'text-white' 
+            : 'text-navy-100'}
     `}>
       {value}
     </span>

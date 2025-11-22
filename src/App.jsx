@@ -4,6 +4,7 @@ import { SplashScreen } from '@/components/SplashScreen.jsx';
 import { Pph21CalculatorUI } from '@/features/pph-calculator/components/Pph21CalculatorUI.jsx';
 import { Pph42CalculatorUI } from '@/features/pph-calculator/components/Pph42CalculatorUI.jsx';
 import { Pph23CalculatorUI } from '@/features/pph-calculator/components/Pph23CalculatorUI.jsx';
+import { LucideBot } from 'lucide-react';
 
 // Daftar semua kalkulator yang tersedia
 const calculationModes = [
@@ -53,6 +54,16 @@ export default function App() {
         {mode === 'pph23' && <Pph23CalculatorUI />}
         {mode === 'impor' && <div className="text-center text-slate-500">Kalkulator Pajak Impor akan segera hadir!</div>}
       </div>
+
+      <footer className="text-center mt-12 pb-4">
+        <p className="text-xs text-navy-400 flex items-center justify-center space-x-1.5">
+          <span>Dibuat dengan 💙 dan sedikit bantuan dari</span>
+          <a href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer" className="font-bold text-navy-500 hover:text-navy-700 flex items-center space-x-1">
+            <LucideBot size={14} />
+            <span>Agent AI</span>
+          </a>
+        </p>
+      </footer>
     </main>
   )
 }
